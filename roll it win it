@@ -1,0 +1,45 @@
+import random
+
+def roll():
+    min_value = 1
+    max_value= 6
+    roll = random.randint(min_value,max_value)
+
+    return roll
+#while true is used to check wheater the integer given is in the limit or not
+while True:
+    players = input("enter the number of players (1-4): ")
+    if players.isdigit():
+# int is ussed to change the string into an integer
+        players = int(players)
+        if players <=4 and players >= 2:
+
+            break
+        else:
+          print(" players must be between 2 and 4  ")
+    else:
+            print ("invild number ")
+
+max_score = 50
+player_scores = [0 for _ in range(players)]
+
+while max(player_scores)<max_score:
+  for player_idx in range(players):
+    print("\nplayer number", player_idx +1 , 'turn has just started\n' )
+    current_score = 0
+    while True:
+      should_roll = input("would you like to roll (y)?")
+      if should_roll.lower() != "y":
+        break
+      value = roll()
+      if value == 1:
+        print("you rolled a 1! turn done ")
+        current_score = 0
+        break
+      else:
+        current_score += value
+        print("you rolled a:" , value)
+      print ("your current score is:" , current_score )
+
+    player_scores[player_idx] +=current_score
+    print ("your total score is :", player_scores[player_idx])
